@@ -1,4 +1,3 @@
-// movieSlice.ts
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {Movie} from '../../model/data';
 
@@ -15,7 +14,7 @@ const initialState: MovieState = {
 };
 
 const movieSlice = createSlice({
-  name: 'movies',
+  name: 'upcoming',
   initialState,
   reducers: {
     setLoading(state) {

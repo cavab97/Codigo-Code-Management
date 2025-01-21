@@ -1,68 +1,36 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-import {Movie, MovieResponse} from '../../model/data';
+import {Movie} from '../../model/data';
 
-interface PopularState {
+interface MovieState {
   loading: boolean;
   error: string | null;
-  movieData: MovieResponse[];
-  movieSingleData: Movie[];
+  movieData: Movie[];
 }
 
-const initialState: PopularState = {
+const initialState: MovieState = {
   loading: false,
   error: null,
   movieData: [],
-  movieSingleData: [],
 };
 
-const popularSlice = createSlice({
+const movieSlice = createSlice({
   name: 'popular',
   initialState,
   reducers: {
-    popularRequest: state => {
+    setLoading(state) {
       state.loading = true;
-      state.error = null;
     },
-    popularSuccess: (state, action: PayloadAction<MovieResponse[]>) => {
-      state.loading = false;
-      state.movieData = action.payload;
-      state.error = null;
-    },
-    popularFailed: (state, action: PayloadAction<string>) => {
-      state.loading = false;
+    setError(state, action: PayloadAction<string>) {
       state.error = action.payload;
-    },
-    popularAdd(state, action: PayloadAction<MovieResponse | MovieResponse[]>) {
-      if (state.movieData) {
-        const newData = Array.isArray(action.payload)
-          ? action.payload
-          : [action.payload];
-
-        newData.forEach((response: MovieResponse) => {
-          if (response.results) {
-            state.movieSingleData.push(...response.results);
-          }
-        });
-      }
-    },
-    popularReset: (
-      state,
-      action: PayloadAction<MovieResponse | MovieResponse[]>,
-    ) => {
       state.loading = false;
-      state.movieData = Array.isArray(action.payload)
-        ? action.payload
-        : [action.payload];
+    },
+    setMovies(state, action: PayloadAction<Movie[]>) {
+      state.movieData = action.payload;
+      state.loading = false;
+      state.error = null;
     },
   },
 });
 
-export const {
-  popularRequest,
-  popularSuccess,
-  popularFailed,
-  popularAdd,
-  popularReset,
-} = popularSlice.actions;
-
-export default popularSlice.reducer;
+export const {setLoading, setError, setMovies} = movieSlice.actions;
+export default movieSlice.reducer;

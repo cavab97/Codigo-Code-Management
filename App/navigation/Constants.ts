@@ -6,3 +6,4 @@ export const HOME_ROUTE = 'Home';
 export const ABOUT_ROUTE = 'About';
 export const UPCOMING_ROUTE = 'Upcoming';
 export const POPULAR_ROUTE = 'Popular';
+export const MOVIE_DETAILS_ROUTE = 'Movie Details';

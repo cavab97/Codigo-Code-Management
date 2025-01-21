@@ -1,8 +1,7 @@
 import React from 'react';
-
-import {ABOUT_ROUTE, HOME_ROUTE} from './Constants';
+import {HOME_ROUTE, MOVIE_DETAILS_ROUTE} from './Constants';
 import HomeContainer from '../screens/Home/home.container';
-import AboutContainer from '../screens/About/about.container';
+import MovieContainer from '../screens/MovieDetails/movie.container';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 // const Drawer = createDrawerNavigator();
@@ -16,7 +15,7 @@ function ProtectedRoutes() {
         headerShown: false,
       }}>
       <Stack.Screen name={HOME_ROUTE} component={HomeContainer} />
-      <Stack.Screen name={ABOUT_ROUTE} component={AboutContainer} />
+      <Stack.Screen name={MOVIE_DETAILS_ROUTE} component={MovieContainer} />
     </Stack.Navigator>
   );
 }
